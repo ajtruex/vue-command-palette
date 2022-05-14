@@ -1,16 +1,13 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { useMagicKeys } from '@vueuse/core'
+import { useMagicKeys, whenever } from '@vueuse/core'
 import CommandPalette from "./components/CommandPalette.vue"
 
 const displayCommandPalette = ref(false)
 const keys = useMagicKeys()
 
-watch(keys.Cmd_K, (isPressed) => {
-  if (isPressed) {
-    displayCommandPalette.value = !displayCommandPalette.value
-  }
-  console.log(isPressed)
+whenever(keys.cmd_k, () => {
+  displayCommandPalette.value = !displayCommandPalette.value
 })
 
 
